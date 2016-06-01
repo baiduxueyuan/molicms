@@ -1,0 +1,64 @@
+<div class="row">
+<div class="span12">      		
+	   		
+	<div class="widget ">
+		<div class="widget-header">
+			<i class="icon-plus"></i>
+ 			<h3>编辑产品</h3>
+		</div> <!-- /widget-header -->
+
+		<div class="widget-content">
+		
+		<div class="alert alert-danger hide" role="alert"></div>
+
+		<form id="add-task" action="{{urlfor "ProductController.Edit"}}" method="post" class="form-horizontal">
+			<input type="hidden" name="id" value="{{.product.Id}}" />
+			<fieldset>
+				
+				<div class="control-product">											
+					<label class="control-label" for="product_name">产品名</label>
+					<div class="controls">
+						<input type="text" name="product_name" class="span6" value="{{.product.ProductName}}" id="product_name">
+					</div>				
+				</div>
+				
+				<div class="control-product">											
+					<label class="control-label" for="product_pc_content">PC端详情描述</label>
+					<div class="controls">
+						<textarea name="product_pc_content" class="span6" id="product_pc_content" rows="6">{{.product.ProductPCConent}}</textarea>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-product -->
+		
+				<br />
+				
+					
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">保 存</button> 
+					<a href="{{urlfor "ProductController.List"}}" class="btn">返 回</a>
+				</div> <!-- /form-actions -->
+			</fieldset>
+		</form>
+
+		</div>
+	</div>
+</div>
+</div>
+
+<script>
+$(function () {
+	$("form").submit(function () {
+		$(".alert").hide();
+		$("button[type='submit']").attr('disabled', true);
+		$.post('{{urlfor "ProductController.Edit"}}', $(this).serialize(), function (out) {
+			if (out.status == 0) {
+				window.location.href = '{{urlfor "ProductController.List"}}';
+			} else {
+				$(".alert").text(out.msg);
+				$(".alert").show();
+				$("button[type='submit']").attr('disabled', false);
+			}
+		}, "json");
+		return false;
+	});
+});
+</script>
