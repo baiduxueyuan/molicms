@@ -21,3 +21,14 @@ http://localhost:8000
 帐号：admin
 密码：admin888
 moilicms (MOLI CMS)魔力内容管理系统
+
+
+看门狗脚本开机自动启动
+vi /etc/rc.local 
+在文件最后增加一行
+nohup /usr/local/molicms/watchdogs.run 2>&1 >> info.log 2>&1 /dev/null &
+这样子,在开机的时候就能自动启动看门狗脚本了.程序在也不怕挂掉了.
+watchdogs.sh  看门狗脚本
+run.sh 主程序启动脚本
+setup.sh 程序安装脚本
+pack.sh 程序打包脚本

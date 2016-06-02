@@ -25,9 +25,7 @@ func init() {
 	beego.AutoRouter(&controllers.OrderController{})
 	beego.AutoRouter(&controllers.CustomerController{})
 	beego.AutoRouter(&controllers.InventoryController{})
-	beego.AutoRouter(&controllers.WarehouseController{})
 	beego.AutoRouter(&controllers.ContentController{})
-
 	beego.AutoRouter(&controllers.AftersaleController{})
 	beego.AutoRouter(&controllers.StatisticController{})
 	beego.AutoRouter(&controllers.FinancialController{})
